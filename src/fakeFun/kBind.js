@@ -1,5 +1,5 @@
 Function.prototype.kcall=function (cxt) {
-  var context=cxt || window;
+  var context=Object(cxt) || window;
   var args=[];
   for(var i=1;i<arguments.length;i++){
     args.push("arguments["+ i + "]")
@@ -15,15 +15,23 @@ Function.prototype.kapply=function (cxt,arr) {
   var context=cxt || window;
   context.fn=this;
   var result;
-  if(!arr){
-    result=context.fn()
-  }else{
-    var args=[];
-    for (var i=0;i<arguments.length;i++){
-      args.push("arr["+i+"]")
+  // if(!arr){
+  //   result=context.fn()
+  // }else{
+  //   var args=[];
+  //   for (var i=0;i<arr.length;i++){
+  //     args.push("arr["+i+"]")
+  //   }
+  //   result=eval("context.fn("+args+")")
+  // }
+  var args=[];
+  if(arr){
+    for (var i=0;i<arr.length;i++){
+      args.push(arr[i]);
     }
-    result=eval("context.fn("+args+")")
   }
+  result=eval("context.fn("+args+")")
+
   delete context.fn;
   return result;
 };
@@ -52,10 +60,12 @@ var dog={
   name:"dog"
 };
 
-var result=cat.intro.kcall(dog,2);
-var result1=cat.intro.kapply(dog,[2]);
-var result2=cat.intro.kbind(dog,[2]);
-console.log(result);
-console.log(result1);
-console.log(result2());
+var result3=cat.intro.call(null,2);
+console.log(result3);
+// var result=cat.intro.kcall(null,2);
+// var result1=cat.intro.kapply(dog,[2]);
+// var result2=cat.intro.kbind(dog,[2]);
+// console.log(result);
+// console.log(result1);
+// console.log(result2());
 

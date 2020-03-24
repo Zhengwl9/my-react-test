@@ -89,22 +89,12 @@ var result = new KPromise((resolve, reject) => {
   }
 });
 result.then((data) => {
-  console.log(data);
+  // console.log(data);
 });
 
 export {}
 
-let promise1 = {}
-Object.defineProperty(promise,'then',{
-  value: function(){
-    throw new Error('报错气死你')
-  }
-});
-let promise={
-  then : function(){
-    throw new Error('报错气死你')
-  }
-};
+
 
 
 

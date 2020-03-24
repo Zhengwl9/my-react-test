@@ -5,12 +5,26 @@
 import {} from "./fakeFun/fakePromise"
 import './index.css'
 import React,{Component}from "./kreact/index1"
+import Event from "./Events/events";
+
+const myEvent=new Event();
 
 let ReactDom=React;
-
-
-
-
+let remove=myEvent.on(
+  'test',
+  (data)=>{
+    console.log(data);
+  }
+);
+let remove1=myEvent.on(
+  'test',
+  (data)=>{
+    console.log(data);
+  }
+);
+myEvent.emit('test',{name:"fjfjg"});
+remove();
+remove1();
 
 function FuncCmp(props){
   return (
