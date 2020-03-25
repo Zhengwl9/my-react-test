@@ -18,7 +18,7 @@ function kextends(sup,sub) {
   Object.setPrototypeOf(sub,sup);
 }
 function Child() {
-  Object.getPrototypeOf(Child).apply(this,arguments)
+  return Object.getPrototypeOf(Child).apply(this,arguments)
 }
 
 
